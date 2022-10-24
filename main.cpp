@@ -46,7 +46,24 @@ void PreToIn::amend()
         temp.erase(1, 1);
         string target = "=";
         int pos = temp.find(target)-2;
-       temp = temp.erase(pos, 1);
+        temp = temp.erase(pos, 1);
+
+        target = "/";
+        pos = temp.find(target);
+        if (pos!=-1)
+        {
+            int r = 0, l = 0;
+            for (int i = pos; i > 0; i--)
+                if (temp[i] == '(')
+                    l = i;
+            for (int i = pos; i < temp.size(); i++)
+                if (temp[i] == ')')
+                    r = i;
+            temp = temp.erase(l, 1);
+            temp = temp.erase(r-1, 1);
+
+        }
+
        this->ans = temp;
     }
 
@@ -118,6 +135,12 @@ int main()
 
     string str;
     getline(cin, str);
+    if (str.size() == 1 || str.size() == 2 || str.size() == 0)
+    {
+        cout << "Error";
+            return 0;
+    }
+
     PreToIn p(str);
     p.display();
 
