@@ -42,15 +42,15 @@ void PreToIn::amend()
 {
     if (ans!="Error")
     {
-     /*   string temp = this->ans;
+        string temp = this->ans;
         temp.erase(0, 1);
         string target = "=";
         int pos = temp.find(target)-2;
-        temp = temp.erase(pos, 1);*/
+        temp = temp.erase(pos, 1);
 
 
 
-    /*    target = "/";
+        target = "/";
         pos = temp.find(target);
         if (pos!=-1)
         {
@@ -64,9 +64,9 @@ void PreToIn::amend()
             temp = temp.erase(l, 1);
             temp = temp.erase(r-1, 1);
 
-        }*/
+        }
 
-     //  this->ans = temp;
+       this->ans = temp;
     }
 
 }
@@ -102,15 +102,7 @@ string PreToIn::ConvertPrefixToInfix(string prefixExpression)
 
             string op2 = InfixStack.top();
             InfixStack.pop();
-            string temp;
-            if (prefixExpression[index] == '*' || prefixExpression[index] == '/')
-            {
-                 temp = op1 + " " + prefixExpression[index] + " " + op2 ;
-            }
-            else
-            {
-                temp = "(" + op1 +  " "+prefixExpression[index]+" " + op2 + ")";
-            }
+            string temp = "(" + op1 +prefixExpression[index]+ op2 + ")";
 
             long op1Value = EvalStack.top();
             EvalStack.pop();
@@ -146,7 +138,7 @@ int main()
     getline(cin, str);
     if (str.size()<5)
     {
-            cout << "error";
+            cout << "Error";
         return 0;
     }
 
